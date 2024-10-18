@@ -1,0 +1,100 @@
+.Footer{
+    width: 100%;
+    background-color: var(--fullWhite);
+    padding: 40px 100px 0;
+    &-content{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 50px;
+        padding: 0 0 40px;
+    }
+    &-logo{
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: flex-start;
+    }
+    &-nav{
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: center;
+        gap: 65px;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        padding: 40px 0 0;
+    }
+    &-contact{
+        width: calc(100% / 3);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 40px 0 0;
+    }
+    &-mail{
+        margin: 10px 0 0;
+    }
+    &-list{
+        display: flex;
+        gap: 100px;;
+    }
+    &-item, &-contactTitle{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    &-subFooter{
+        position: relative;
+        padding: 30px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #636363;
+        }
+    }
+    &-disclaimer{
+     width: calc(100% / 3);
+    }
+    &-legalList{
+        width: calc(100% / 3);
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+    }
+    &-legalItem{
+        font-size: 14px;
+        font-weight: 400;
+        color: #636363;
+        text-transform: uppercase;
+    }
+    &-creator{
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.logoDiety{
+    width: 90px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-hojaOne{
+        fill: var(--main)
+    }
+    &-hojaTwo{
+        fill: var(--secondary);
+    }
+    &-text{
+        fill: var(--fullBlack);
+    }
+}

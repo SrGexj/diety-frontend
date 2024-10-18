@@ -1,0 +1,84 @@
+.Header{
+    position: fixed;
+    width: 100vw;
+    min-height: 4.6875rem;
+    transition: all .25s;
+    z-index: 6;
+    &-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.875rem 6.25rem;
+        z-index: 3;
+        text-transform: capitalize;
+    }
+    &-logo, &-nav, &-access{
+        width: calc(100% / 3);
+    }
+    &-logoSvg{
+        width: fit-content;
+    }
+    &-list{
+        display: flex;
+        justify-content: center;
+        gap: 65px;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    &-item{
+        font-size: 1.25rem;
+    }
+    &-access{
+        display: flex;
+        justify-content: flex-end;
+        gap: 1.875rem;
+    }
+    &-menuButton{
+        display: none;
+    }
+    &-menuToggler{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    @media (max-width: 1024px){
+        &-wrapper{
+            padding: 1.875rem 3.125rem;
+        }
+        &-nav{
+            display: none;
+        }
+        &-logo{
+            width: 50%;
+        }
+        &-access{
+            width: 50%;
+            gap: 1.25rem;
+        }
+    }
+    @media (max-width: 768px){
+        &-wrapper{
+            padding: 1.25rem 1.25rem;
+        }
+        &-logo{
+            width: 50%;
+        }
+        &-access{
+            display: none;
+        }
+        &-menuButton{
+            width: 35px;
+            height: 35px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+    }
+}
+
+.scrolled{
+    background-color: var(--fullWhite);
+}

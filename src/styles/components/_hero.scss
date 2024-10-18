@@ -1,0 +1,91 @@
+.Hero{
+    height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    overflow: hidden;
+    &-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8.75rem 5% 0;
+    }
+    &-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 50%;
+        gap: 1.6875rem;
+        max-width: 43.75rem;
+        padding: 0 2rem;
+    }
+    &-imageWrapper{
+        width: 50%;
+    }
+    &-title{
+        font-size: 2.8125rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        &--bold{
+            font-weight: 800;
+        }
+        &::before{
+            content: "";
+            display: block;
+            width: 17.8125rem;
+            height: .3125rem;
+            background: #138453;
+            margin: .625rem 0;
+        }
+    }
+    &-description{
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6875rem;
+        max-width: 33.75rem;
+    }
+    &-subtle{
+        font-style: italic;
+        font-weight: 300;
+    }
+    &-buttonsWrapper{
+        margin: 4.6875rem 0 0;
+        display: flex;
+        gap: .9375rem;
+    }
+    &-loginCta{
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 300;
+        gap: .3125rem;
+        &--link{
+            color: var(--secondary);
+            text-decoration-line: underline;
+            transition: all .25s;
+            &:hover{
+                color: var(--main);
+            }
+        }
+    }
+    @media (max-width: 1024px){
+        &-wrapper{
+            flex-direction: column;
+            padding: 8.125rem 1.25rem 0;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        &-content{
+            width: 100%;
+        }
+        &-imageWrapper{
+            width: 100%;
+        }
+    }
+}

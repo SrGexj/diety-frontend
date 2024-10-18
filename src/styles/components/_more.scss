@@ -1,0 +1,25 @@
+.More{
+    width: 100%;
+    background-color: var(--main);
+    background-image: url('/imgs/bg-faldon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 160px 40px;
+    &-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-title{
+        font-size: 40px;
+        max-width: 850px;
+        font-weight: 500;
+        color: var(--fullWhite);
+    }
+    &-buttonsWrapper{
+        display: flex;
+        gap: .9375rem;
+        height: fit-content;
+    }
+}

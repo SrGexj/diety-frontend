@@ -1,0 +1,88 @@
+@import url("/fonts/plus_jakarta_sans/stylesheet.scss");
+
+html, body {
+  background: #F7F7F7;
+}
+
+body {
+  font-family: var(--mainFont);
+}
+
+.Button {
+  padding: 1.3125rem;
+  border: none;
+  border-radius: 1.25rem;
+  font-size: 1.125rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  transition: all .25s;
+  &-text{
+    margin: -1px 0 0;
+  }
+  &-icon{
+    width: 38px;
+  }
+  &-iconArrow{
+    fill: var(--fullWhite);
+  }
+  &-register, &-login {
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  &-register {
+    color: var(--blanco);
+    background: var(--secondary);
+    &:hover{
+      color: var(--negro);
+      background: var(--main);
+    }
+  }
+  &-login {
+    color: var(--negro);
+    background: var(--main);
+    &:hover{
+      color: var(--blanco);
+      background: var(--secondary);
+    }
+  }
+  &-find{
+    border-radius: 20px;
+    border: 1px solid var(--secondary);
+    gap: 10px;
+    &:hover{
+      background: var(--main);
+      .Button-icon{
+        svg{
+          fill: var(--negro);
+        }
+      }
+    }
+  }
+  &-startNow{
+    background: var(--secondary);
+    color: var(--fullWhite);
+    gap: 20px;
+    .Button-text{
+      width: 90%;
+      text-align: center;
+    }
+    &:hover{
+      background: var(--main);
+      color: var(--negro);
+      .Button-iconArrow{
+        fill: var(--negro);
+      }
+    }
+  }
+}
+
+.Brand-name {
+  font-weight: 800;
+  text-transform: uppercase;
+}
