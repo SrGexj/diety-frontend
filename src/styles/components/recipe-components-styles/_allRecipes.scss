@@ -1,0 +1,120 @@
+.AllRecipes{
+    &-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 20px;
+    }
+    &-recipe{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+    &-recipeImageWrapper{
+        width: 100%;
+        position: relative;
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+    }
+    &-recipeImage{
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        z-index: 1;
+    }
+    &-recipeTitle{
+        font-size: 30px;
+        text-transform: uppercase;
+        transition: all 0.3s;
+    }
+    &-buttonWrapper{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+    &-recipeContent{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        background: var(--fullBlack);
+        border-radius: 0 0 20px 20px;
+        gap: 10px;
+        color: var(--fullWhite);
+    }
+    &-button{
+        padding: 12px 15px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 15px;
+        background: var(--secondary);
+        color: var(--fullWhite);
+        cursor: pointer;
+        transition: all .3s;
+        &:hover{
+            background: var(--main);
+        }
+        &--confirm{
+            width: 50%;
+            background: #d61c1c;
+            color: var(--fullWhite);
+            &:hover{
+                background: #a90f0f;
+            }
+        }
+        &--decline{
+            width: 50%;
+            background: var(--secondary);
+            color: var(--fullWhite);
+            &:hover{
+                background: #0b5334;
+            }
+        }
+    }
+    &-confirmPopUp{
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+        transition: all 0.3s;
+        &--active{
+            opacity: 1;
+            visibility: visible;
+        }
+        &-title{
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--fullBlack);
+        }
+        &-buttons{
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+        &-content{
+            width: 20%;
+            padding: 20px;
+            background: var(--fullWhite);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        
+        }
+    }
+}

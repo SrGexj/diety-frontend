@@ -6,6 +6,8 @@ export const Register = () => {
 
     const [checked, setChecked] = useState(false)
 
+    const { VITE_API } = import.meta.env
+
     const handleRegister = async (e) => {
         e.preventDefault()
 
@@ -13,7 +15,8 @@ export const Register = () => {
 
         const formData = {
             email: email.value,
-            password: password.value
+            password: password.value,
+            username: username.value
         }
 
         let options = {
@@ -24,7 +27,7 @@ export const Register = () => {
             body: JSON.stringify(formData)
         }
 
-        const response = await fetch('http://localhost:3000/register', options)
+        const response = await fetch(`${VITE_API}/register`, options)
         const data = await response.json()
         try {
             if (data.success === true) {

@@ -86,3 +86,21 @@ body {
   font-weight: 800;
   text-transform: uppercase;
 }
+
+.user-profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width : 45px;
+  height: 45px;
+  background-color: brown;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 30px;
+  border-radius: 50%;
+  font-weight: 800;
+  &--initials{
+    margin-top: -5px;
+    text-transform: uppercase;
+  }
+}

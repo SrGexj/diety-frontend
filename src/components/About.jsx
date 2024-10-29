@@ -1,7 +1,7 @@
 import '../styles/components/_about.scss'
 export const About = () => {
     return (
-        <div className="About">
+        <div className="About" id='about'>
             <section className="About-wrapper">
                 <h2 className="About-title">¿Qué es <span className="Brand-name">diety®</span>?</h2>
                 <p className="About-description">
