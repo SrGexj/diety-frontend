@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { useQuill } from 'react-quilljs'
-import 'quill/dist/quill.snow.css'
-import DOMPurify from 'dompurify'
+// import { useQuill } from 'react-quilljs'
+// import 'quill/dist/quill.snow.css'
+// import DOMPurify from 'dompurify'
 import { toolbar } from "./toolbar"
 import { userContext } from "../../../App"
 import { MessageContext } from "../../messages/Messages"
