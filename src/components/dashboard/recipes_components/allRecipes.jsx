@@ -2,10 +2,15 @@ import { useState, useEffect, useContext } from "react"
 import { Navigate ,useNavigate } from "react-router-dom"
 import { userContext } from "../../../App"
 import '../../../styles/components/recipe-components-styles/_allRecipes.scss'
+import { MessageContext } from "../../messages/Messages"
 
 export const AllRecipes = () => {
 
+    const {VITE_API} = import.meta.env
+
    const { currentUser } = useContext(userContext)
+
+   const { showMessage } = useContext(MessageContext)
 
     const [recipes, setRecipes] = useState([])
     const [recipeId, setRecipeId] = useState()
@@ -24,7 +29,7 @@ export const AllRecipes = () => {
             signal: controller.signal
         }
       
-        const response = await fetch(`http://localhost:3000/recipes/${currentUser._id}`, options)
+        const response = await fetch(`${VITE_API}/recipes/${currentUser._id}`, options)
         const data = await response.json()
         try {
             if (data.success === true) {
@@ -46,6 +51,11 @@ export const AllRecipes = () => {
         setRecipeId(recipeId)
     }
 
+    const truncateHtml = (html, maxLength) => {
+        const plainText = html.replace(/<[^>]+>/g, ''); // Elimina etiquetas HTML
+        return plainText.length > maxLength ? plainText.slice(0, maxLength) + '...' : plainText;
+     }
+
     const handleDeleteRecipe = async (e) => {
         e.preventDefault()
         const popup = document.querySelector('.AllRecipes-confirmPopUp')
@@ -53,14 +63,14 @@ export const AllRecipes = () => {
             method: 'DELETE',
 
         }
-        const response = await fetch(`http://localhost:3000/recipes/${recipeId}`, options)
+        const response = await fetch(`${VITE_API}/recipes/${recipeId}`, options)
         const data = await response.json()
         try {
             if (data.success === true) {
-                console.log(data.message)
+                showMessage(data.message)
                 popup.classList.remove('AllRecipes-confirmPopUp--active')
             } else {
-                console.log(data.error)
+                showMessage(data.message)
             }
         } catch (error) {
             console.error(error)
@@ -95,7 +105,7 @@ export const AllRecipes = () => {
                             </div>
                             <div className="AllRecipes-recipeContent">
                                 <h3 className="AllRecipes-recipeTitle">{recipe.title}</h3>
-                                <div className="AllRecipes-description" dangerouslySetInnerHTML={{__html: recipe.description}}></div>
+                                <div className="AllRecipes-description" dangerouslySetInnerHTML={{__html: truncateHtml(recipe.description, 100)}}></div>
                                 <div className="AllRecipes-buttonWrapper">
                                     <button onClick={() =>{handleOpenEdit(recipe._id)}} className="AllRecipes-button AllRecipes-button--decline">Editar receta</button>
                                     <button onClick={() =>{handleOpenPopup(recipe._id)}} className="AllRecipes-button AllRecipes-button--confirm">Eliminar receta</button>

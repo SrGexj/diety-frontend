@@ -89,21 +89,19 @@
             outline: none;
         }
     }
-    &-inputPassword{
+    &-password{
         position: relative;
-        &::after{
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background-image: url('/imgs/eye.png');
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-        }
+    }
+    &-showPassword{
+        position: absolute;
+        top: calc(50% - 8px);
+        right: 10px;
+        cursor: pointer;
+        background: url('/public/imgs/eye.svg') no-repeat center;
+        width: 27px;
+        height: 20px;
+        opacity:.25;
+        z-index: 1;
     }
     &-newAccount{
         font-size: 16px;

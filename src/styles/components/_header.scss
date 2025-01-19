@@ -3,7 +3,7 @@
     width: 100vw;
     min-height: 4.6875rem;
     transition: all .25s;
-    z-index: 6;
+    z-index: 7;
     &-wrapper{
         width: 100%;
         display: flex;
@@ -46,25 +46,25 @@
     }
     @media (max-width: 1024px){
         &-wrapper{
-            padding: 1.875rem 3.125rem;
+            padding: 1.875rem 20px;
         }
         &-nav{
-            display: none;
-        }
-        &-logo{
-            width: 50%;
+            gap: 10px;
         }
         &-userPanel{
-            display: none;
+            display: flex;
+            justify-content: flex-end;
         }
         &-access{
-            width: 50%;
             gap: 1.25rem;
         }
     }
     @media (max-width: 768px){
         &-wrapper{
             padding: 1.25rem 1.25rem;
+        }
+        &-nav{
+            display: none;
         }
         &-logo{
             width: 50%;
@@ -73,18 +73,79 @@
             display: none;
         }
         &-menuButton{
+            position: relative;
             width: 35px;
             height: 35px;
             display: flex;
+            justify-content: space-evenly;
             flex-direction: column;
             cursor: pointer;
+        }
+        &-menuToggler{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        &-button--line{
+            width: 100%;
+            height: 3px;
+            background-color: var(--fullBlack);
+            transition: all .25s;
+        }
+        &-button--active{
+           &:nth-child(2){
+               transform: rotate(45deg) translate(4px, 5px);
+           }
+              &:nth-child(3){
+                transform: rotate(-45deg) translate(4px, -5px);
+              }
         }
         &-userPanel{
             display: none;
         }
     }
+    
 }
 
+.MainMenu{
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    position: fixed;
+    padding: 115px 50px 0;
+    transform: translate(100%);
+    background: #f4f4f4;
+    transition: all .3s;
+    z-index: 6;
+    &--active{
+        transform: translateX(0);
+    }
+    &-groupTitle{
+        font-size: 22px;
+        line-height: normal;
+        font-weight: 600;
+        color: var(--secondary);
+    }
+    &-nav{
+       height: 100%;
+    }
+    &-list{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+    &-item{
+        font-size: 20px;
+        text-align: center;
+    }
+    &-link{
+        color: #7c7c7c;
+        text-decoration: none;
+    }
+}
 
 .UserPanel{
     &-wrapper{

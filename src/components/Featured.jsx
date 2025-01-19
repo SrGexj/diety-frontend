@@ -2,7 +2,7 @@ import { Slider } from "./Slider"
 import '../styles/components/_featured.scss'
 export const Featured = () => {
     return (
-        <section className="Featured">
+        <section className="Featured" id="recipes">
             <div className="Featured-wrapper">
                 <div className="Featured-content">
                     <h2 className="Featured-title">Inspírate con <span className="Hero-title--bold">nuevas recetas</span></h2>

@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import '../styles/components/_register.scss'
+import { MessageContext } from "../components/messages/Messages"
 export const Register = () => {
 
     const RegisterRef = useRef(null)
@@ -8,10 +9,26 @@ export const Register = () => {
 
     const { VITE_API } = import.meta.env
 
+    const { showMessage } = useContext(MessageContext)
+
     const handleRegister = async (e) => {
         e.preventDefault()
 
-        const { email, password, username } = RegisterRef.current
+        const { email, password, passwordConfirm, username } = RegisterRef.current
+
+        if (password.value === '') {
+            showMessage('La contraseña no puede estar vacía', 'error')
+            return
+        }
+        if (username.value === '') {
+            showMessage('El nombre no puede estar vacío', 'error')
+            return
+        }
+        if (email.value === '') {
+            showMessage('El email no puede estar vacío', 'error')
+            return
+        }
+
 
         const formData = {
             email: email.value,
@@ -31,23 +48,54 @@ export const Register = () => {
         const data = await response.json()
         try {
             if (data.success === true) {
-                console.log(data.message)
+                showMessage(data.message)
             } else {
-                console.log(data.error)
+                showMessage(data.message)
             }
         } catch (error) {
             console.error(error)
         }
     }
 
-    const handleChecked = () => {
-        setChecked(true)
-        if (checked === true) {
-            setChecked(false)
+    const validatePassword = () => {
+        const { password, passwordConfirm } = RegisterRef.current
+    
+       
+        let error = RegisterRef.current.querySelector('p')
+    
+        if (password.value !== passwordConfirm.value) {
+            if (!error) {
+                error = document.createElement('p')
+                error.textContent = 'Las contraseñas no coinciden'
+                error.style.color = 'red'
+                error.style.fontSize = '14px'
+    
+                RegisterRef.current.appendChild(error)
+            }
         } else {
-            setChecked(true)
+            
+            if (error) {
+                error.remove()
+            }
         }
     }
+    
+    const toggleShow = (e) => {
+        e.preventDefault()
+        const passwordInputs = RegisterRef.current.querySelectorAll('.Register-inputPassword')
+        const showButton = RegisterRef.current.querySelector('.Register-showPassword')
+    
+        passwordInputs.forEach((input) => {
+            if (input.type === 'password') {
+                input.type = 'text'
+                showButton.style.background = 'url(../imgs/eye-hide.svg) no-repeat center'
+            } else if (input.type === 'text') {
+                input.type = 'password'
+                showButton.style.background = 'url(../imgs/eye.svg) no-repeat center'
+            }
+        })
+    }
+    
 
     useEffect(() => {
 
@@ -100,12 +148,21 @@ export const Register = () => {
                     </div>
                     <div className="Register-formGroup">
                         <label htmlFor="password" className="Register-label">Contraseña</label>
-                        <input type="password" name="password" required id='password' className="Register-input Register-inputPassword" />
+                        <div className="Register-password">
+                            <input type="password" name="password" required id='password' className="Register-input Register-inputPassword" />
+                            <button className="Register-showPassword" onClick={toggleShow}></button>
+                        </div>
+                    </div>
+                    <div className="Register-formGroup">
+                        <label htmlFor="password" className="Register-label">Confirmar contraseña</label>
+                        <div className="Register-password">
+                            <input type="password" name="passwordConfirm" onChange={validatePassword} required id='passwordConfirm' className="Register-input Register-inputPassword" />
+                        </div>
                     </div>
                     <div className="Register-extras">
                         <div className="Register-checkbox">
                         <label className="container">He leido y acepto los términos y condiciones
-                        <input type="checkbox" onClick={handleChecked} />
+                        <input type="checkbox" onClick={() => {checked === true ? setChecked(false) : setChecked(true)}} />
                         <span className="checkmark"></span>
                         </label>
                         </div>

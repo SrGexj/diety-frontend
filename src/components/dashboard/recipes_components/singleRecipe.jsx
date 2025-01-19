@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
+import '../../../styles/components/_singleRecipe.scss'
 
 export const SingleRecipe = () => {
     
     const { url } = useParams()
+
+    const { VITE_API } = import.meta.env
+
     const [recipe, setRecipe] = useState(null)
+
 
     const getRecipe = async () => {
 
@@ -14,15 +19,14 @@ export const SingleRecipe = () => {
                 "content-type": "application/json"
             }
         }
-
         try {
-            const response = await fetch(`http://localhost:3000/receta/${url}`, options)
+            const response = await fetch(`${VITE_API}/receta/${url}`, options)
             const data = await response.json()
 
             if (data.success) {
-                setRecipe(data.recipe) // Asignar el objeto recipe
+                setRecipe(data.recipe)
             } else {
-                console.error("No se pudo obtener la receta:", data.error) // Manejar error si no es exitoso
+                console.error("No se pudo obtener la receta:", data.error)
             }
         } catch (error) {
             console.error("Error fetching the recipe:", error)
@@ -41,10 +45,10 @@ export const SingleRecipe = () => {
                         {recipe.title}
                     </h2>
                     <img src={recipe.main_image} alt={recipe.title} />
-                    <p className="Recipe-description">{recipe.description}</p>
+                    <p className="Recipe-description" dangerouslySetInnerHTML={{__html: recipe.description}}></p>
                     <h3>Ingredientes</h3>
                     <ul>
-                        {/* Asegúrate de que ingredients sea un array antes de usar map */}
+                      
                         {Array.isArray(recipe.ingredients) && recipe.ingredients.length > 0 ? (
                             recipe.ingredients.map((ingredient, index) => (
                                 <li key={index}>{ingredient}</li> // Asegúrate de usar keys únicas

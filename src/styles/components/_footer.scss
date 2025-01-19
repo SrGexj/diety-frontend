@@ -80,6 +80,71 @@
         display: flex;
         justify-content: flex-end;
     }
+    @media (max-width: 1024px){
+        padding: 40px 20px 0;
+        &-content{
+            gap: 30px;
+        }
+        &-contact, &-nav, &-logo, &-legalList, &-creator, &-disclaimer{
+            width: fit-content;
+        }
+        &-nav{
+            gap: 40px;
+        }
+        &-list{
+            gap: 50px;
+        }
+        &-legalList{
+            gap: 30px;
+        }
+    }
+    @media (max-width: 768px){
+        padding: 20px 20px 0;
+        &-content{
+            flex-direction: column;
+            gap: 20px;
+        }
+        &-logo{
+            width: 100%;
+            justify-content: center;
+        }
+        &-nav{
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0 0;
+        }
+        &-contact{
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0 0;
+        }
+        &-list{
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        &-disclaimer{
+            width: 100%;
+            text-align: center;
+        }
+        &-subFooter{
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        &-legalList{
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+        }
+        &-creator{
+            width: 100%;
+            justify-content: center;
+        }
+    }
 }
 
 .logoDiety{

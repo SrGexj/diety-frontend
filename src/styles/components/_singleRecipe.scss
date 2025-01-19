@@ -1,0 +1,133 @@
+// No es el estilo final, es un ejemplo para mostrar al menos un estilo  
+  .Recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7.5rem 2rem;
+    background-color: var(--fullWhite);
+    border-radius: 12px;
+
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+  
+    &-content {
+      width: 100%;
+      max-width: 800px;
+      text-align: left; // Cambiar a izquierda para más apertura
+      margin-bottom: 2rem; // Espaciado inferior
+    }
+  
+    &-title {
+      font-size: 2.5rem;
+      color: var(--main);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-family: var(--mainFont);
+      letter-spacing: 1px;
+    }
+  
+    &-description {
+      font-size: 1.1rem;
+      color: var(--negro);
+      margin: 1rem 0;
+      text-align: justify;
+      font-family: var(--mainFont);
+      line-height: 1.6;
+    }
+  
+    h3 {
+      font-size: 1.8rem;
+      color: var(--main);
+      margin: 1.5rem 0 0.5rem;
+      font-family: var(--mainFont);
+      border-bottom: 2px solid var(--main);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 1rem 0;
+  
+      li {
+        font-size: 1rem;
+        background-color: var(--blanco);
+        margin: 0.5rem 0;
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        font-family: var(--mainFont);
+        transition: transform 0.2s;
+  
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 1.5rem 0; // Aumentar el margen superior e inferior
+      transition: transform 0.2s;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--negro);
+      font-family: var(--mainFont);
+      margin: 1rem 0; // Aumentar el margen para más separación
+    }
+  
+    .ingredients,
+    .instructions {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+  
+    .ingredients {
+      font-weight: bold;
+      color: var(--main);
+    }
+  
+    .instructions {
+      margin-top: 1.5rem;
+      font-family: var(--mainFont);
+    }
+  }
+  
+  // Media Queries
+  @media (max-width: 768px) {
+    .Recipe {
+      padding: 1.5rem;
+  
+      &-title {
+        font-size: 2rem;
+      }
+  
+      &-description,
+      p {
+        font-size: 0.9rem;
+      }
+  
+      h3 {
+        font-size: 1.5rem;
+      }
+  
+      ul {
+        li {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  

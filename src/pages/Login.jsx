@@ -1,9 +1,13 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import '../styles/components/_login.scss'
 import { userContext } from '../App'
+import { MessageContext } from '../components/messages/Messages'
 export const Login = () => {
 
+    const { VITE_API } = import.meta.env
+
     const { setCurrentUser } = useContext(userContext)
+    const { showMessage } = useContext(MessageContext)
 
     const loginRef = useRef(null)
 
@@ -28,19 +32,19 @@ export const Login = () => {
             body: JSON.stringify(formData)
         }
 
-        const response = await fetch('http://localhost:3000/login', options)
+        const response = await fetch(`${VITE_API}/login`, options)
         const data = await response.json()
         try {
            if (data.success === true) {
                setCurrentUser(data.user)
-             
+                showMessage(data.message)
                  if (checked === true) {
                      localStorage.setItem('userData', JSON.stringify(data.user))
                  } else {
                      sessionStorage.setItem('userData', JSON.stringify(data.user))
                  }
            } else {
-               console.log(data.error)
+               showMessage(data.message, 'error')
            }
         } catch (error) {
             console.error(error)
@@ -57,6 +61,18 @@ export const Login = () => {
             setChecked(true)
         }
 
+    }
+    const toggleShow = (e) => {
+        e.preventDefault()
+        const passwordInput = loginRef.current.querySelector('.Login-inputPassword')
+        const showButton = loginRef.current.querySelector('.Login-showPassword')
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text'
+            showButton.style.background = 'url(../imgs/eye-hide.svg) no-repeat center' 
+        } else {
+            passwordInput.type = 'password'
+            showButton.style.background = 'url(../imgs/eye.svg) no-repeat center' 
+        }
     }
 
     useEffect(() => {
@@ -93,7 +109,10 @@ export const Login = () => {
                         </div>
                         <div className="Login-formGroup">
                             <label htmlFor="password" className="Login-label">Contraseña</label>
-                            <input type="password" name="password" id='password' className="Login-input Login-inputPassword" />
+                            <div className="Login-password">
+                                <input type="password" name="password" required id='password' className="Login-input Login-inputPassword" />
+                                <button className="Login-showPassword" onClick={toggleShow}></button>
+                            </div>
                         </div>
                         <div className="Login-extras">
                             <div className="Login-checkbox">

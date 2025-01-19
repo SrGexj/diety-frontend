@@ -30,7 +30,6 @@ body {
   }
   &-register, &-login {
     padding: 0.625rem 1.25rem;
-    border: none;
     border-radius: 1.25rem;
     cursor: pointer;
     transition: all 0.3s;
@@ -80,6 +79,7 @@ body {
       }
     }
   }
+
 }
 
 .Brand-name {
@@ -103,4 +103,46 @@ body {
     margin-top: -5px;
     text-transform: uppercase;
   }
+}
+
+.message-container {
+  position: fixed;
+  top: 16px;
+  left: calc(50% - var(--message-width));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #363636;
+  padding: 12px 15px;
+  font-size: 16px;
+  height: 50px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+  max-width: 300px;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease, margin 0.5s;
+}
+
+.message.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.message-success {
+  background-color: #45ca23;
+  color: #fff;
+}
+
+.message-error {
+  background-color: #f44336;
+  color: #fff;
 }

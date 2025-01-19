@@ -88,4 +88,29 @@
             width: 100%;
         }
     }
+    @media (max-width: 768px){
+        &-wrapper{
+            padding: 6.875rem 1.25rem 0;
+            max-width: 100%;
+        }
+        &-content{
+            padding: 0;
+        }
+        &-title{
+            font-size: 2.125rem;
+            &::before{
+                width: 15.625rem;
+            }
+        }
+        &-description{
+            font-size: 1.25rem;
+            max-width: 30rem;
+        }
+        &-buttonsWrapper{
+            align-items: center;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: .625rem 0 0;
+        }
+    }
 }

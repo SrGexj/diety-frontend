@@ -22,4 +22,31 @@
         gap: .9375rem;
         height: fit-content;
     }
+
+    @media (max-width: 1024px){
+        padding: 40px 40px;
+        &-wrapper{
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+        &-title{
+            font-size: 30px;
+        }
+    }
+    @media (max-width: 768px){
+        padding: 3.125rem 1.25rem;
+        &-wrapper{
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+        &-title{
+            font-size: 28px;
+        }
+        &-buttonsWrapper{
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+    }
 }

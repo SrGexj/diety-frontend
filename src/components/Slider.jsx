@@ -1,7 +1,10 @@
-import { createContext, useEffect, useRef, useState } from "react"
+import {useEffect, useRef, useState } from "react"
 import '../styles/components/_slider.scss'
+import { Link } from "react-router-dom"
 
 export const Slider = () => {
+
+    const {VITE_API} = import.meta.env
 
     const [recipes, setRecipes] = useState([])
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -9,6 +12,8 @@ export const Slider = () => {
     const [showedSlides, setShowedSlides] = useState(3)
 
     let slidesGap = 50
+
+    window.innerWidth < 768 ? slidesGap = 5 : window.innerWidth < 1024 ? slidesGap = 30 : slidesGap = 50 
 
     const sliderRef = useRef(null);
 
@@ -20,8 +25,9 @@ export const Slider = () => {
                 'Content-Type': 'application/json'
             }
         }
-        const response = await fetch('http://localhost:3000/recipes', options)
+        const response = await fetch(`${VITE_API}/recipes?limit=10`, options)
         const data = await response.json()
+
         try {
             data.map (recipe => {
                 const date = new Date(recipe.createdAt)
@@ -29,7 +35,6 @@ export const Slider = () => {
                 recipe.createdAt = formattedDate
             })
             setRecipes(data)
-            
         } catch (error) {
             console.error(error)
         }
@@ -37,10 +42,13 @@ export const Slider = () => {
 
      const handlePrevSlide = () => {
          setCurrentSlide(currentSlide - 1)
+         currentSlide <= 0 ? setCurrentSlide(recipes.length - 3) : ''
+
      }
 
      const handleNextSlide = () => {
          setCurrentSlide(currentSlide + 1)
+         currentSlide >= recipes.length - 3 ? setCurrentSlide(0) : ''
      }
 
      useEffect(() => {
@@ -53,8 +61,6 @@ export const Slider = () => {
             const uniqueSlideWidth = sliderRef.current.clientWidth
             setSlideWidth(uniqueSlideWidth)
         }
-
-        currentSlide >= recipes.length - 2 ? setCurrentSlide(0) : currentSlide < 0 ? setCurrentSlide(recipes.length) : setCurrentSlide(currentSlide)
 
        const handleResize = () => {
 
@@ -71,6 +77,7 @@ export const Slider = () => {
                setShowedSlides(3)
            }
        }
+
 
        handleResize()
        window.addEventListener('resize', handleResize)
@@ -113,26 +120,27 @@ export const Slider = () => {
                     gap: slidesGap + 'px',
                 }}
             >
-                {recipes.map((slide, index) => (
-                    <div key={index} className="Slider-recipe" ref={sliderRef}>
-                        <div className="Slider-recipeImageWrapper">
-                            <ul className="Slider-optionList">
-                                <li className="Slider-option">
-                                    <a href="" className="Slider-link">FAV</a>
-                                </li>
-                                <li className="Slider-option">
-                                    <a href="" className="Slider-link">VER</a>
-                                </li>
-                            </ul> 
-                            <div className="Slider-recipeContent">
-                                <h3 className="Slider-recipeContentTitle">{slide.title}</h3>
-                                <p className="Slider-recipeText">{slide.description}</p>
+                {recipes.map((slide) => (
+                    <Link to={`/receta/${slide.url}`}>
+                        <div className="Slider-recipe" ref={sliderRef}>
+                            <div className="Slider-recipeImageWrapper">
+                                <ul className="Slider-optionList">
+                                    {/* <li className="Slider-option">
+                                        <a href="" className="Slider-link">FAV</a>
+                                    </li>
+                                    <li className="Slider-option">
+                                        <a href="" className="Slider-link">VER</a>
+                                    </li> */}
+                                </ul>
+                                <div className="Slider-recipeContent">
+                                    <h3 className="Slider-recipeContentTitle">{slide.title}</h3>
+                                    <p className="Slider-recipeText" dangerouslySetInnerHTML={{__html: slide.description}}></p>
+                                </div>
+                                <img src={slide.main_image} alt={slide.title} className="Slider-recipeImage" />
                             </div>
-                            <img src={slide.main_image} alt={slide.title} className="Slider-recipeImage" />
+                            <h3 className="Slider-recipeTitle">{slide.title}</h3>
                         </div>
-                        <h3 className="Slider-recipeTitle">{slide.title}</h3>
-
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
