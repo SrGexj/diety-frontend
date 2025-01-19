@@ -18,6 +18,7 @@ import { Diets } from './components/dashboard/diet_components/Diets'
 import { UserSettings } from './components/dashboard/user_components/userSettings'
 import { SavedRecipes } from './components/dashboard/recipes_components/savedRecipes'
 import { Recipes } from './pages/Recipes'
+import 'requirejs'
 
 export const userContext = createContext()
 
