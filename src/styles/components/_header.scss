@@ -132,8 +132,9 @@
     &-list{
         height: 100%;
         display: flex;
+        padding: 50px 0 0;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         gap: 1.25rem;
     }
