@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useQuill } from 'react-quilljs'
 import 'quill/dist/quill.snow.css'
-import Select from 'react-select'
 import DOMPurify from 'dompurify'
 import { toolbar } from "./toolbar"
 import { userContext } from "../../../App"
@@ -68,7 +67,7 @@ export const EditRecipe = () => {
         updatedIngredients.splice(index, 1)
         setIngredients(updatedIngredients)
     }
-    
+
     const handleUpdateRecipe = async (e) => {
         e.preventDefault()
         const { title, image } = updateRecipeRef.current
