@@ -31,7 +31,7 @@ export const NewRecipe = () => {
       updatedIngredients.splice(index, 1)
       setIngredients(updatedIngredients)
     }   
-    
+
     const handleImageChange = (event) => {
       const file = event.target.files[0]
       if (file) {
