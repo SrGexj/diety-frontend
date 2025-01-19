@@ -12,7 +12,7 @@ export const EditRecipe = () => {
     const { currentUser } = useContext(userContext)
     const { showMessage } = useContext(MessageContext)
 
-    const { quill, quillRef } = useQuill({ modules: { toolbar } })
+    // const { quill, quillRef } = useQuill({ modules: { toolbar } })
     const updateRecipeRef = useRef(null)
     const { recipeId } = useParams()
     
@@ -72,7 +72,7 @@ export const EditRecipe = () => {
         e.preventDefault()
         const { title, image } = updateRecipeRef.current
 
-        const htmlContent = quill.root.innerHTML
+        // const htmlContent = quill.root.innerHTML
         const sanitizedContent = DOMPurify.sanitize(htmlContent)
 
         const formData = new FormData()
@@ -151,13 +151,13 @@ export const EditRecipe = () => {
           }
         }, [searchValue, currentPage]) 
 
-        useEffect(() => {
-            if (quill && recipeData?.description) {
-                // Solo intentamos modificar el contenido del Quill si está disponible y recipeData.description existe
-                const sanitizedDescription = DOMPurify.sanitize(recipeData.description)
-                quill.root.innerHTML = sanitizedDescription
-            }
-        }, [quill, recipeData]) 
+        // useEffect(() => {
+        //     if (quill && recipeData?.description) {
+        //         // Solo intentamos modificar el contenido del Quill si está disponible y recipeData.description existe
+        //         const sanitizedDescription = DOMPurify.sanitize(recipeData.description)
+        //         quill.root.innerHTML = sanitizedDescription
+        //     }
+        // }, [quill, recipeData]) 
 
     return (
         <div className="EditRecipe">
@@ -179,7 +179,7 @@ export const EditRecipe = () => {
                     <div className="Form-group">
                         <label className="Form-label">Descripción</label>
                         <div id="editor" className="Form-editor">
-                            <div ref={quillRef} />
+                            {/* <div ref={quillRef} /> */}
                         </div>
                     </div>
                     {/* Ingredients */}
