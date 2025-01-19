@@ -67,7 +67,7 @@ export const Header = () => {
                                 <a href="#about" className="Header-link">sobre <span className="Brand-name">diety®</span></a>
                             </li>
                             <li className="Header-item">
-                                <a href="#recipes" className="Header-link">Recetas</a>
+                                <a href="/recipes" className="Header-link">Recetas</a>
                             </li>
                         </ul>
                     </nav>

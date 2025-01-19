@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import '../styles/components/_recipes.scss'
 
 export const Recipes = () => {
     
@@ -42,14 +43,6 @@ export const Recipes = () => {
                     <Link to={`/receta/${recipe.url}`}>
                         <div className="Recipes-recipe">
                             <div className="Recipes-recipeImageWrapper">
-                                <ul className="Recipes-optionList">
-                                    {/* <li className="Recipes-option">
-                                        <a href="" className="Recipes-link">FAV</a>
-                                    </li>
-                                    <li className="Recipes-option">
-                                        <a href="" className="Recipes-link">VER</a>
-                                    </li> */}
-                                </ul>
                                 <div className="Recipes-recipeContent">
                                     <h3 className="Recipes-recipeContentTitle">{recipe.title}</h3>
                                     <p className="Recipes-recipeText" dangerouslySetInnerHTML={{__html: recipe.description}}></p>
