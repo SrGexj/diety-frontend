@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import { useQuill } from 'react-quilljs'
-import 'quill/dist/quill.snow.css'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import Quill from 'quill'
+import "quill/dist/quill.snow.css"
 import DOMPurify from 'dompurify'
 import { toolbar } from "./toolbar"
 import { userContext } from "../../../App"
@@ -12,7 +12,8 @@ export const EditRecipe = () => {
     const { currentUser } = useContext(userContext)
     const { showMessage } = useContext(MessageContext)
 
-    const { quill, quillRef } = useQuill({ modules: { toolbar } })
+    let quill = useRef(null)
+    const editorRef = React.useRef(null);
     const updateRecipeRef = useRef(null)
     const { recipeId } = useParams()
     
@@ -72,14 +73,14 @@ export const EditRecipe = () => {
         e.preventDefault()
         const { title, image } = updateRecipeRef.current
 
-        const htmlContent = quill.root.innerHTML
+        const htmlContent = quill.current.root.innerHTML
         const sanitizedContent = DOMPurify.sanitize(htmlContent)
 
         const formData = new FormData()
         formData.append('title', title.value)
         formData.append('description', sanitizedContent)
         formData.append('main_image', image.files[0])
-        formData.append('ingredients', ingredients.map(i => i.value))  
+        formData.append('ingredients', JSON.stringify(ingredients))
         formData.append('instructions', JSON.stringify(steps))
         formData.append('url', encodeURI(title.value))
         formData.append('userId', currentUser._id)
@@ -114,8 +115,9 @@ export const EditRecipe = () => {
             setRecipeData(data.recipes)
             const recipeIng = data.recipes.ingredients
             setIngredients(JSON.parse(recipeIng))
-
             setSteps(JSON.parse(data.recipes.instructions))
+            const quillContent = data.recipes.description
+            quill.current.root.innerHTML = quillContent
 
         }
     }
@@ -152,12 +154,11 @@ export const EditRecipe = () => {
         }, [searchValue, currentPage]) 
 
         useEffect(() => {
-            if (quill && recipeData?.description) {
-                // Solo intentamos modificar el contenido del Quill si está disponible y recipeData.description existe
-                const sanitizedDescription = DOMPurify.sanitize(recipeData.description)
-                quill.root.innerHTML = sanitizedDescription
-            }
-        }, [quill, recipeData]) 
+            quill.current = new Quill(editorRef.current, {
+                theme: "snow",
+                modules: { toolbar },
+              })
+          }, [])
 
     return (
         <div className="EditRecipe">
@@ -179,7 +180,7 @@ export const EditRecipe = () => {
                     <div className="Form-group">
                         <label className="Form-label">Descripción</label>
                         <div id="editor" className="Form-editor">
-                            <div ref={quillRef} />
+                            <div ref={editorRef}></div>
                         </div>
                     </div>
                     {/* Ingredients */}
@@ -234,7 +235,7 @@ export const EditRecipe = () => {
                             {ingredients.map((ingredient, index) => (
                             <div key={index} className="ingredient">
                                 <span>{ingredient.name}</span>
-                                <button type="button" onClick={() => removeIngredient(index)}>Eliminar</button>
+                                <button className='Form-button Form-button--delete' type="button" onClick={() => removeIngredient(index)}>Eliminar</button>
                             </div>
                             ))}
                             </ul>

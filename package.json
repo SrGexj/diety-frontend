@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postinstall": "patch-package",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -14,14 +13,11 @@
     "@tinymce/tinymce-react": "^5.1.1",
     "dompurify": "^3.1.7",
     "lodash": "^4.17.21",
-    "patch-package": "^8.0.0",
-    "quill": "^2.0.2",
+    "quill": "^2.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-quilljs": "^2.0.5",
     "react-router-dom": "^6.27.0",
     "react-select": "^5.8.2",
-    "requirejs": "^2.3.7",
     "tinymce": "^7.4.1"
   },
   "devDependencies": {

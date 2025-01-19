@@ -1,10 +1,11 @@
-import { useContext, useRef, useState, useEffect } from "react"
-import { useQuill } from "react-quilljs"
+import React, { useContext, useRef, useState, useEffect } from "react"
+import Quill from "quill"
 import "quill/dist/quill.snow.css"
 import DOMPurify from "dompurify"
 import { userContext } from "../../../App"
 import { MessageContext } from "../../messages/Messages"
 import { useNavigate } from "react-router-dom"
+import { toolbar } from "./toolbar"
 
 export const NewRecipe = () => {
 
@@ -15,8 +16,9 @@ export const NewRecipe = () => {
     const navigate = useNavigate()  
 
     const recipeFormRef = useRef(null)
+    let quill = useRef(null)
+    const editorRef = React.useRef(null) 
 
-    const { quill, quillRef } = useQuill()  
     const [ingredients, setIngredients] = useState([])
     const [searchValue, setSearchValue] = useState("")
     const [searchResults, setSearchResults] = useState([])
@@ -73,7 +75,7 @@ export const NewRecipe = () => {
         e.preventDefault()
 
         const { title, image } = recipeFormRef.current
-        const htmlContent = quill.root.innerHTML
+        const htmlContent = quill.current.root.innerHTML
         const sanitizedContent = DOMPurify.sanitize(htmlContent)
 
         const formData = new FormData()
@@ -127,7 +129,15 @@ export const NewRecipe = () => {
   
       fetchIngredients(currentPage) // Llama la función con 'currentPage'
     }
-  }, [searchValue, currentPage])      
+  }, [searchValue, currentPage])     
+  
+    useEffect(() => {
+        quill.current = new Quill(editorRef.current, {
+            theme: "snow",
+            modules: { toolbar },
+        })
+    }, [])
+
   
   return (
     <>
@@ -174,7 +184,7 @@ export const NewRecipe = () => {
         <div className="Form-group">
           <label className="Form-label">Descripción</label>
           <div id="editor" className="Form-editor">
-            <div ref={quillRef} />
+            <div ref={editorRef}></div>
           </div>
         </div>
 
