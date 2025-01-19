@@ -411,6 +411,9 @@
         color: var(--secondary)
     }
     @media (max-width: 768px){
+        &-ingredientResults{
+            width: 100%;
+        }
         &-editFull{
            flex-direction: column;
            gap: 20px;
