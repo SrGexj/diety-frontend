@@ -410,6 +410,12 @@
         font-weight: 400;
         color: var(--secondary)
     }
+    @media (max-width: 768px){
+        &-editFull{
+           flex-direction: column;
+           gap: 20px;
+        }
+    }
 }
 .ql-editor{
     min-height: 200px;

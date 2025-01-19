@@ -135,6 +135,16 @@
         background-size: cover;
         background-position: center;
     }
+    @media (max-width: 768px){
+        flex-direction: column;
+        &-wrapper{
+            width: 100%;
+            padding: 20px;
+        }
+        &-image{
+            display: none;
+        }
+    }
 }
 
   

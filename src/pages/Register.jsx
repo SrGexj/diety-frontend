@@ -49,6 +49,9 @@ export const Register = () => {
         try {
             if (data.success === true) {
                 showMessage(data.message)
+                setTimeout(() => {
+                    window.location.href = '/login'
+                }, 2000)
             } else {
                 showMessage(data.message)
             }

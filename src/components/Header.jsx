@@ -218,10 +218,7 @@ export const Header = () => {
                         <a href="/recipes" className="MainMenu-link">Recetas</a>
                     </li>
                     <li className="MainMenu-item">
-                        <a href="/about" className="MainMenu-link">Sobre Nosotros</a>
-                    </li>
-                    <li className="MainMenu-item">
-                        <a href="/contact" className="MainMenu-link">Contacto</a>
+                        <a href="#about" className="MainMenu-link">Sobre Nosotros</a>
                     </li>
                     {/* añadir las opciones del userpanel */}
                     {currentUser && (
