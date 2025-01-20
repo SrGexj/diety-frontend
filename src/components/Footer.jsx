@@ -51,9 +51,9 @@ export const Footer = () => {
                 <div className="Footer-subFooter">
                     <p className="Footer-disclaimer">© <span className="todayYear"></span> DIETY - GESTION DE DIETAS</p>
                     <ul className="Footer-legalList">
-                        <li className="Footer-legalItem"><a href="/privacy" className="Footer-legalLink">Privacidad</a></li>
-                        <li className="Footer-legalItem"><a href="/terms" className="Footer-legalLink">Aviso Legal</a></li>
-                        <li className="Footer-legalItem"><a href="/uso-de-datos" className="Footer-legalLink">Uso de datos</a></li>
+                        <li className="Footer-legalItem"><a href="#" className="Footer-legalLink">Privacidad</a></li>
+                        <li className="Footer-legalItem"><a href="#" className="Footer-legalLink">Aviso Legal</a></li>
+                        <li className="Footer-legalItem"><a href="#" className="Footer-legalLink">Uso de datos</a></li>
                     </ul>
                     <a className="Footer-creator" href="https://gexj.es">gexj.es</a>
                 </div>
