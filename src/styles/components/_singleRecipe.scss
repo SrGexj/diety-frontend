@@ -65,7 +65,7 @@
         transition: transform 0.2s;
         display: flex;
         flex-direction: column;
-  
+        gap: 10px;
         &:hover {
           transform: scale(1.02);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
