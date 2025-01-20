@@ -24,10 +24,10 @@ export const SingleRecipe = () => {
         try {
             const response = await fetch(`${VITE_API}/receta/${url}`, options);
             const data = await response.json();
-            console.log(data)
+           
             if (data.success) {
                 setRecipe(data.recipe);
-                console.log(data.recipe)
+               
                 // Procesar instrucciones
                 try {
                     const parsedInstructions = JSON.parse(data.recipe.instructions);
